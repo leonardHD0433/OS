@@ -5,6 +5,7 @@
 - [OS Assignment](#os-assignment)
   - [Documentation of setting up a linux server](#documentation-of-setting-up-a-linux-server)
     - [Open SSH server](#open-ssh-server)
+    - [Services](#services)
   - [Note](#note)
 
 ### Open SSH server
@@ -44,6 +45,16 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 3. Reload SSH
 
         sudo systemctl reload sshd
+
+### Services
+
+---
+
+1. **Web**
+2. **Database**
+3. **File Sharing**
+4. **Email**
+5. **Security**
 
 ## Note
 

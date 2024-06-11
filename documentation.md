@@ -95,6 +95,21 @@ Reference : [Web Server Installation](https://reintech.io/blog/setting-up-secure
 
 ---
 
+Reference : [Database Server Installation](https://docs.rockylinux.org/guides/database/database_mariadb-server/)
+
+**Installing** :
+
+      sudo dnf install mariadb-server
+
+      sudo systemctl enable mariadb
+
+      sudo systemctl start mariadb
+
+**Configuration**:
+
+
+---
+
 ---
 
 #### 4. File Sharing Server
@@ -132,3 +147,7 @@ Reference : [Web Server Installation](https://reintech.io/blog/setting-up-secure
 - check fail2ban status
 
       systemctl status fail2ban
+
+- check mariadb status
+
+      systemctl status mariadb

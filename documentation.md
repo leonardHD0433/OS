@@ -78,8 +78,6 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 
      - Maximum retry of SSH will be 5.
 
-
-
 ---
 
 #### 2. Web Server
@@ -125,10 +123,12 @@ Reference : [Web Server Installation](https://reintech.io/blog/setting-up-secure
 
 - check ssh status
 
-      sudo systemctl status sshd
+      systemctl status sshd
 
 - check firewall
 
       sudo firewall-cmd --list-all
 
+- check fail2ban status
 
+      systemctl status fail2ban

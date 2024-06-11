@@ -26,7 +26,7 @@
 
 Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-secure-openssh-server-rocky-linux-9)
             
-[Fail2Ban Installation](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-rocky-linux-9)
+&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; [Fail2Ban Installation](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-rocky-linux-9)
 
 **Installing** :
 
@@ -62,9 +62,23 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 
 4. Installing **fail2ban** for giving SSH security such as prevent multiple failed logins
 
-     - fail2ban is third-party not default, so need to install third-party package manager **EPEL**
+     - fail2ban is third-party not default, so need to install third-party package manager **EPEL**.
   
             sudo dnf install epel-release -y
+
+            sudo dnf install -y fail2ban
+
+            sudo systemctl enable --now fail2ban
+
+     - Create a local configuration file to override the defaults.
+
+            sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
+
+            sudo nano /etc/fail2ban/jail.local
+
+     - Maximum retry of SSH will be 5.
+
+
 
 ---
 

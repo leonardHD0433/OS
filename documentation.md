@@ -97,6 +97,8 @@ Reference : [Web Server Installation](https://reintech.io/blog/setting-up-secure
 
 Reference : [Database Server Installation](https://docs.rockylinux.org/guides/database/database_mariadb-server/)
 
+[Add User](https://docs.rockylinux.org/guides/database/database_mariadb-server/)
+
 **Installing** :
 
       sudo dnf install mariadb-server
@@ -106,6 +108,30 @@ Reference : [Database Server Installation](https://docs.rockylinux.org/guides/da
       sudo systemctl start mariadb
 
 **Configuration**:
+
+1. Run installation (If got problem with password, refer to **Issue 2**)
+
+       mariadb-secure-installation
+
+       Remove anonymous users? [Y/n] Y  //to know who's loggin in
+
+       Disallow root login remotely? [Y/n] Y  //disable remote root
+
+       Remove test database and access to it? [Y/n] Y
+
+       Reload privilege tables now? [Y/n] Y
+
+       mariadb -u root -pYourPassword   //log in
+
+2. Add simple database
+
+       CREATE DATABASE newDB;
+
+       SHOW DATABASE;    //display your databases
+
+3. Add user
+
+       CREATE USER 'username'@localhost IDENTIFIED BY 'password';
 
 
 ---
@@ -126,13 +152,31 @@ Reference : [Database Server Installation](https://docs.rockylinux.org/guides/da
 
         **Reason** : SELinux does not recognize non standard port 2024
 
+        **Solution** :
+
               sudo semanage port -a -t ssh_port_t -p tcp 2024
 
               sudo restorecon -Rv /etc/ssh
 
         Reference : [Change to non standard port](https://www.techrepublic.com/article/how-to-configure-ssh-to-use-a-non-standard-port-with-selinux-set-to-enforcing/)
 
-2. 
+2. **Database Server**
+
+      - Issue with starting installations
+
+        **Reason** : Default root password "enter" does not work
+
+        **Solution** :
+
+            sudo mariadb -u root
+
+            USE mysql;
+
+            ALTER USER 'root'@'localhost' IDENTIFIED BY 'insert  new password here';
+
+            FLUSH PRIVILEGES;
+
+            exit
 
 ## Note
 
@@ -151,3 +195,15 @@ Reference : [Database Server Installation](https://docs.rockylinux.org/guides/da
 - check mariadb status
 
       systemctl status mariadb
+
+- check all user in database
+
+      SELECT User FROM mysql.user;
+
+- show all databases
+
+      SHOW DATABASES;
+
+- show current user
+
+      SELECT USER();

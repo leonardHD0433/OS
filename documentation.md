@@ -24,8 +24,7 @@
 
 ---
 
-Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-secure-openssh-server-rocky-linux-9)
-            
+Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-secure-openssh-server-rocky-linux-9)   
 &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; [Fail2Ban Installation](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-rocky-linux-9)
 
 **Installing** :
@@ -88,7 +87,6 @@ Reference : [Web Server Installation](https://reintech.io/blog/setting-up-secure
 
 **Installing** :
 
-
 ---
 
 #### 3. Database Server
@@ -127,18 +125,32 @@ Reference : [Database Server Installation](https://docs.rockylinux.org/guides/da
 
        CREATE DATABASE newDB;
 
-       SHOW DATABASE;    //display your databases
+       SHOW DATABASES;    //display your databases
 
 3. Add user
 
        CREATE USER 'username'@localhost IDENTIFIED BY 'password';
 
-
----
-
 ---
 
 #### 4. File Sharing Server
+
+---
+
+Reference :
+
+**Installing** :
+
+      sudo dnf install samba
+
+**Configuration**
+
+   1. Create secure access of samba
+
+            sudo groupadd smbgroupClinic
+
+            sudo mkdir /home/shareRecord
+
 
 #### 5. Email Server
 

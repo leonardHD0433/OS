@@ -1,0 +1,4 @@
+Samba 
+
+smbclient '\\192.168.0.8\shareRecord' -U sambaAdmin
+

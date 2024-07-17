@@ -147,9 +147,46 @@ Reference :
 
    1. Create secure access of samba
 
-            sudo groupadd smbgroupClinic
+            sudo groupadd smbgroupClinic              //new permission group
 
-            sudo mkdir /home/shareRecord
+            sudo mkdir /home/shareRecord              //dir for file share
+
+            sudo chmod 770 /home/shareRecord/         //only ppl in group can access
+
+            sudo nano /etc/samba/smb.conf             //edit config file
+
+   2. Samba Config File
+
+            [global]
+                  unix charset = UTF-8       //filename consistency
+
+                  hosts allow = 192.168.0.   //any ip starting with 192.168.0. can access
+
+            //added at end of config file
+            [shareRecord]
+                  path = /home/shareRecord
+                  browsable = yes
+                  read only = no
+                  writable = yes
+                  guest ok = no
+                  valid users = @smbgroupClinic
+                  force group = smbgroupClinic
+                  force create mode = 770
+                  force directory mode = 770
+                  inherit permissions = yes
+
+   3. Enable Samba
+
+            sudo systemctl enable --now smb
+
+            //allow samba service through firewall
+            sudo firewall-cmd --permanent --add-service=samba 
+
+            //add samba user
+            sudo useradd -m sambaAdmin
+            sudo smbpasswd -a username    
+
+            sudo usermod -aG smbgroupClinic sambaAdmin
 
 
 #### 5. Email Server
@@ -190,6 +227,29 @@ Reference :
 
             exit
 
+3. **Samba Server**
+
+      -Issue with client can't run 'ls' command
+
+      -Error Message: NT_STATUS_ACCESS_DENIED listing
+
+      **Reason** : SELinux context for samba folder is wrong
+
+      **Solution** :
+
+            //checked shareRecord context is home_dir
+            ls -Z /home  
+
+            //For Samba shares, the context should include samba_share_t
+            sudo chcon -R -t samba_share_t /home/shareRecord 
+
+            //persistent across reboots
+            sudo semanage fcontext -a -t samba_share_t "/home/shareRecord(/.*)?"
+            sudo restorecon -R /home/shareRecord
+
+            //reload policy
+            sudo load_policy
+
 ## Note
 
 - check ssh status
@@ -208,6 +268,10 @@ Reference :
 
       systemctl status mariadb
 
+- check samba status
+
+      systemctl status smb
+
 - check all user in database
 
       SELECT User FROM mysql.user;
@@ -219,3 +283,11 @@ Reference :
 - show current user
 
       SELECT USER();
+
+- check users in the group
+
+      getent group smbgroupClinic
+
+- check SELinux status
+
+      getenforce

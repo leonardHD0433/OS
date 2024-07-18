@@ -11,6 +11,7 @@
       - [4. File Sharing Server](#4-file-sharing-server)
       - [5. Email Server](#5-email-server)
       - [6. Security](#6-security)
+      - [7. Patient Record Automated Generator](#7-patient-record-automated-generator)
     - [Issues](#issues)
   - [Note](#note)
 
@@ -143,7 +144,7 @@ Reference :
 
       sudo dnf install samba
 
-**Configuration**
+**Configuration**:
 
    1. Create secure access of samba
 
@@ -192,6 +193,20 @@ Reference :
 #### 5. Email Server
 
 #### 6. Security
+
+#### 7. Patient Record Automated Generator
+
+---
+
+Reference:
+
+**Installing**:
+
+      sudo dnf install python3-pip        //useful for downloading packages
+
+**Configuration**:
+
+      sudo mkdir /home/recordGen          //where python file resides
 
 ### Issues
 
@@ -291,3 +306,7 @@ Reference :
 - check SELinux status
 
       getenforce
+
+- check what port services are listening on
+
+      sudo ss -tnlp | grep sevice_name

@@ -78,6 +78,8 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 
      - Maximum retry of SSH will be 5.
 
+5. Extra login with Key-Pair Authentication
+
 ---
 
 #### 2. Web Server
@@ -161,7 +163,7 @@ Reference :
             [global]
                   unix charset = UTF-8       //filename consistency
 
-                  hosts allow = 192.168.0.   //any ip starting with 192.168.0. can access
+                  hosts allow = ALL   //any ip can access with authentication
 
             //added at end of config file
             [shareRecord]
@@ -172,8 +174,6 @@ Reference :
                   guest ok = no
                   valid users = @smbgroupClinic
                   force group = smbgroupClinic
-                  force create mode = 770
-                  force directory mode = 770
                   inherit permissions = yes
 
    3. Enable Samba

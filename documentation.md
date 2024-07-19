@@ -86,9 +86,51 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 
 ---
 
-Reference : [Web Server Installation](https://reintech.io/blog/setting-up-secure-openssh-server-rocky-linux-9)
+Reference : [Server World](https://www.server-world.info/en/note?os=Rocky_Linux_8&p=httpd&f=1)
 
 **Installing** :
+
+      sudo dnf install httpd
+      
+      Is this ok [y/N]: y //confirm installation
+
+**Configuration**:
+
+1. Remove welcome page
+
+       sudo rm /etc/httpd/conf.d/welcome.conf /etc httpd/conf.d/welcome.conf.org
+
+2. Configure httpd
+
+       sudo vi /etc/httpd/conf/httpd.conf
+
+       //Line 89: Change to own email address
+       ServerAdmin root@pwe69
+
+       //Line 98: Change to own server name
+       ServerName www.pwe69:80
+
+       //Line 147: Allows web server to follow symbollic links
+       Options FollowSymLinks
+
+       //Line 154: Allow all directives to override server global settings
+       AllowOverride All
+
+       //Line 167: Add file name that it can access only with directory's name
+       DirectoryIndex index.html index.php index.cgi
+
+       //Add: Only return Apache in server header
+       ServerTokens Prod
+
+3. Enable service
+
+       sudo systemctl enable --now httpd
+
+4. Configure firewall
+
+       sudo firewall-cmd --add-service=http
+
+       sudo firewall-cmd --runtime-to-permanent    
 
 ---
 

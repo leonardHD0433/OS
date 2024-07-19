@@ -231,6 +231,7 @@ Reference :
 
             sudo usermod -aG smbgroupClinic sambaAdmin
 
+---
 
 #### 5. Email Server
 

@@ -130,6 +130,119 @@ Reference : [Server World](https://www.server-world.info/en/note?os=Rocky_Linux_
 
        sudo firewall-cmd --runtime-to-permanent    
 
+**Blog System: WordPress**:
+
+1. Install PHP
+
+       sudo dnf module list php 
+       //View list of available PHP versions
+
+       sudo dnf module reset php //reset PHP version
+
+       Is this ok [y/N]: y //Confirm reset
+
+       sudo dnf module enable php:8.2 
+       //switch to latest PHP version
+
+       Is this ok [y/N]: y //Confirm switch
+
+       //Install latest PHP version (8.2)
+       sudo dnf module install php:8.2/common
+
+       Is this ok [y/N]: y //Confirm installation
+
+2. Restart and view httpd status
+
+       sudo systemctl restart httpd
+
+       sudo systemctl status php-fpm
+
+       sudo echo '<?php phpinfo(); ?>' > /var/www/html/info.php
+       //Create PHP info test page
+       //This may not work because "sudo" is only applied before ">", thus system shows "Permission Denied"
+
+       "Image of phpinfo()"
+
+3. Install MariaDB
+
+       Refer to Database Server
+
+4. Install other required PHP modules
+
+       sudo dnf --enablerepo=epel -y install php-pear php-mbstring php-pdo php-gd php-mysqlnd php-IDNA_Convert php-enchant enchant hunspell
+
+       sudo vi /etc/php-fpm.d/www.conf //Configure the PHP file
+
+       //Add configurations at the end of the file
+       php_value[max_execution_time] = 600
+       php_value[memory_limit] = 2G
+       php_value[post_max_size] = 2G
+       php_value[upload_max_filesize] = 2G
+       php_value[max_input_time] = 600
+       php_value[max_input_vars] = 2000
+       php_value[date.timezone] = Asia/Kuala_Lumpur
+
+       sudo systemctl restart php-fpm
+
+5. Create a user and database on MariaDB for WordPress
+
+       mariadb -u root -p
+       Enter password: **********
+
+       MariaDB [(none)]> create database wordpress;
+
+       MariaDB [(none)]> grant all privileges on wordpress.* to wordpress@'localhost' identified by 'password'; 
+
+       MariaDB [(none)]> flush privileges; 
+
+       MariaDB [(none)]> exit 
+
+6. Configure Apache httpd for WordPress
+
+       sudo curl -O https://wordpress.org/latest.tar.gz
+
+       sudo tar zxvf latest.tar.gz -C /var/www/
+
+       sudo chown -R apache. /var/www/wordpress
+
+       sudo vi /etc/httpd/conf.d/wordpress.conf //Configure wordpress.conf file
+
+       //Add to wordpress.conf file
+       Timeout 600
+       ProxyTimeout 600
+
+       Alias /wordpress "/var/www/wordpress/"
+       <Directory "/var/www/wordpress">
+            Options FollowSymLinks
+            AllowOverride All
+            Require all granted
+       </Directory>
+
+       sudo systemctl restart httpd
+
+7. Allow policies if SELinux is enabled (SELinux enabled by default in Rocky Linux 9)
+
+       sudo setsebool -P httpd_can_network_connect on
+       
+       sudo setsebool -P domain_can_mmap_files on
+
+       sudo setsebool -P httpd_unified on
+
+8. Access to the URL with web browser(https://[Server's Hostname or IP Address]/wordpress/)
+
+       //Newer versions of WordPress runs the installation and configuration automatically
+
+       //Set blog site title and administrative user account for WordPress
+       Attach image of welcome page
+
+       //Login with administrative user
+       Attach image of login page
+
+       //WordPress management site
+       Attach image of management site
+
+       //WordPress blog homepage
+       Attach image of Blog
 ---
 
 #### 3. Database Server

@@ -80,6 +80,27 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 
 5. Extra login with Key-Pair Authentication
 
+            //generate private and public key 
+            ssh-keygen -t rsa -b 4096 -C "leonardsocials@gmail.com"
+
+            cat /home/leonardhd/.ssh/id_rsa.pub >> /home/leonardhd/.ssh/authorized_keys
+
+            //transfer id_rsa to your client's Users\YourUsername\.ssh directory
+
+            sudo nano /etc/ssh/sshd_config
+
+            PubkeyAuthentication yes
+
+            AuthorizedKeysFile      .ssh/authorized_keys
+
+            //exit config file
+
+            sudo systemctl reload sshd
+
+      **Connect with Windows (Example)**
+
+            ssh -i C:\Users\YourUsername\.ssh\id_rsa username@server_ip
+
 ---
 
 #### 2. Web Server

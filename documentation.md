@@ -497,3 +497,7 @@ Reference:
 - check what port services are listening on
 
       sudo ss -tnlp | grep sevice_name
+
+- update selinux policies
+
+      sudo load_policy

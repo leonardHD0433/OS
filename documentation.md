@@ -387,7 +387,7 @@ Reference:
 
 ### Issues
 
-1. **Open SSH server**
+1. **Open SSH Server**
 
      - Issue with SSH (solved)
 
@@ -395,13 +395,23 @@ Reference:
 
         **Solution** :
 
-              sudo semanage port -a -t ssh_port_t -p tcp 2024
+            sudo semanage port -a -t ssh_port_t -p tcp 2024
 
-              sudo restorecon -Rv /etc/ssh
+            sudo restorecon -Rv /etc/ssh
 
         Reference : [Change to non standard port](https://www.techrepublic.com/article/how-to-configure-ssh-to-use-a-non-standard-port-with-selinux-set-to-enforcing/)
 
-2. **Database Server**
+2. **Web Server**
+
+      - Missing mysqli PHP extension required for WordPress
+         
+        **Reason** : PHP version 7.x and above deprecated the MySQL extension that the older version of WordPress is looking for
+
+        **Solution** : Install the MySQL extension
+
+             sudo dnf install php-mysqlnd
+
+3. **Database Server**
 
       - Issue with starting installations
 
@@ -419,7 +429,7 @@ Reference:
 
             exit
 
-3. **Samba Server**
+4. **Samba Server**
 
       -Issue with client can't run 'ls' command
 

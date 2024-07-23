@@ -52,7 +52,7 @@ Reference : [OpenSSH Server Installation](https://reintech.io/blog/setting-up-se
 
    - Adding port 2024
   
-          sudo firewall-cmd --permanent --add-port=2222/tcp  
+          sudo firewall-cmd --permanent --add-port=2024/tcp  
 
           sudo firewall-cmd --reload
 

@@ -16,5 +16,10 @@ WORKDIR /workspace
 #Git clone the docker-compose repo to the container
 RUN git clone https://github.com/leonardHD0433/OS.git .
 
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT [ "/entrypoint.sh" ]
+
 CMD ["/bin/bash"]
 

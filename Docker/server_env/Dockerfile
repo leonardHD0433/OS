@@ -1,26 +1,20 @@
 FROM rockylinux/rockylinux:9.4
 
-# Install basic troubleshooting tools
-RUN dnf -y install iproute net-tools traceroute bind-utils \
-    procps-ng nano grep sed awk tar unzip zip git && \
-    dnf clean all
 
-#Install Docker
+# Install packages in one layer to reduce image size
 RUN dnf -y update && \
-    dnf -y install dnf-plugins-core && \
-    dnf config-manager --add-repo https://download.docker.com/linux/rhel/docker-ce.repo && \
+    dnf -y install iproute net-tools traceroute bind-utils \
+    procps-ng nano grep sed tar unzip zip git dnf-plugins-core python3-pip && \
+    dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo && \
     dnf -y install docker-ce docker-ce-cli containerd.io && \
+    pip3 install docker-compose && \
     dnf clean all
 
-#Install Docker Compose
-RUN dnf -y install python3-pip && \
-    pip3 install docker-compose
+# Set the working directory to /workspace
+WORKDIR /workspace
 
-#Enable and start Docker
-RUN systemctl enable docker && systemctl start docker
-
-#Copy the /server to the container
-COPY /server /workspace
+#Git clone the docker-compose repo to the container
+RUN git clone https://github.com/leonardHD0433/OS.git .
 
 CMD ["/bin/bash"]
 

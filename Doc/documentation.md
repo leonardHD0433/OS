@@ -423,7 +423,7 @@ Reference:
 
             USE mysql;
 
-            ALTER USER 'root'@'localhost' IDENTIFIED BY 'insert  new password here';
+            ALTER USER 'root'@'localhost' IDENTIFIED BY 'insert new password here';
 
             FLUSH PRIVILEGES;
 

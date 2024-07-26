@@ -9,6 +9,8 @@ services:
             - "3306:3306"
         volumes:
             - db_data:/var/lib/mysql
+        networks:
+            - server-net
 
     network:
         server-net:

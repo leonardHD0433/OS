@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Start the Docker daemon
+dockerd &
+
+# Wait for the Docker daemon to start
+while (! docker stats --no-stream ); do
+  echo "Waiting for Docker to start..."
+  sleep 1
+done
+
+echo "Docker daemon is running."
+
 # Define the repository directory
 REPO_DIR="/workspace"
 

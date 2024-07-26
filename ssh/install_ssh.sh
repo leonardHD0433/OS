@@ -1,21 +1,24 @@
 #!/bin/bash
 
+#cd working directory
+cd /workspace
+
 # Update the package list
-dnf update
+dnf update -y
 
-# Install the SSH serve
+# Install the SSH server
 dnf install openssh-server -y
-
-# Start the SSH service
 systemctl start sshd
-
-# Enable the SSH service to start on boot
 systemctl enable sshd
-
-# Print the status of the SSH service
 systemctl status sshd
-
 cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+
+# Configure the SSH server
+
+
+sudo reboot
+
+
 
 
 

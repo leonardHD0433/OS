@@ -10,10 +10,10 @@ services:
         volumes:
             - db_data:/var/lib/mysql
         networks:
-            - server-net
+            - OS
 
 networks:
-    server-net:
+    OS:
         driver: bridge
 
     

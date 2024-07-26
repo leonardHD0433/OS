@@ -4,7 +4,7 @@ ENV MYSQL_ROOT_PASSWORD=database4OS \
     MYSQL_USER=admin \
     MYSQL_PASSWORD=passwd
 
-COPY  ./database_creation.sql /docker-entrypoint-initdb.d/
+COPY  ./init /docker-entrypoint-initdb.d
 
 EXPOSE 3306
 

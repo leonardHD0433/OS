@@ -302,13 +302,19 @@ Reference : [Database Server Installation](https://docs.rockylinux.org/guides/da
 
 2. Add simple database
 
-       CREATE DATABASE newDB;
+       CREATE DATABASE db_Name;
+
+       //for the above web server
+       CREATE DATABASE wordpress;
 
        SHOW DATABASES;    //display your databases
 
 3. Add user
 
        CREATE USER 'username'@localhost IDENTIFIED BY 'password';
+       GRANT ALL PRIVILEGES ON *.* TO 'user'@'localhost'; //grant all privilege
+       FLUSH PRIVILEGES;      //apply changes
+
 
 ---
 

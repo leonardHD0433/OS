@@ -12,8 +12,8 @@ services:
         networks:
             - server-net
 
-    network:
-        server-net:
-            driver: bridge
+networks:
+    server-net:
+        driver: bridge
 
     

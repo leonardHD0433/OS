@@ -29,17 +29,9 @@ cp /web/conf/www.conf /etc/php-fpm.d/www.conf
 cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
 rm /etc/httpd/conf.d/ssl.conf
 
-# Generate RSA Key
-openssl genrsa -aes128 -passout pass:passwd -out $KEY_FILE 2048
-
-# Remove passphrase from key
-openssl rsa -in $KEY_FILE -passin pass:passwd -out $KEY_FILE
-
-# Generate CSR
-openssl req -utf8 -new -key $KEY_FILE -out $CSR_FILE -subj "/C=MY/ST=Selangor/L=Shah Alam/O=UOW Malaysia/OU=Operating Systems/CN=pwe69.com/emailAddress=root@pwe69.com"
-
-# Generate Self-Signed Certificate
-openssl x509 -in $CSR_FILE -out $CRT_FILE -req -signkey $KEY_FILE -days 3650
+cp /web/cert/server.key $KEY_FILE
+cp /web/cert/server.csr $CSR_FILE
+cp /web/cert/server.crt $CRT_FILE
 
 # Set permissions
 sudo chmod 600 $KEY_FILE

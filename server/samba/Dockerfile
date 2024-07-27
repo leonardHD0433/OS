@@ -2,7 +2,7 @@ FROM dperson/samba
 
 ENV SMB_USER=sambaAdmin \
     SMB_PASS=SambalisSpicy \
-    SMB_GROUP=smbgroupClinic \
+    SMB_GROUP=smbgroup_clinic \
     SMB_SHARE=shareRecord \
     SMB_DIR=/home/shareRecord
 

@@ -27,11 +27,25 @@ services:
         networks:
             - OS
 
+    dns:
+        build: ./dns
+        container_name: dns
+        ports:
+            - "53:53/tcp"
+            - "53:53/udp"
+        restart: always
+        networks:
+            OS:
+                ipv4_address: 192.168.0.8
+
 volumes:
     db:
 
 networks:
     OS:
         driver: bridge
+        ipam:
+            config:
+                - subnet: 192.168.0.0/24
 
     

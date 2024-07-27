@@ -37,6 +37,11 @@ log "Checking necessary directories..."
 [ -d /var/run/samba ] || { log "/var/run/samba directory does not exist"; exit 1; }
 [ -d /var/lib/samba ] || { log "/var/lib/samba directory does not exist"; exit 1; }
 
+# Ensure proper permissions for Samba directories
+log "Setting permissions for Samba directories..."
+chmod 755 /var/run/samba || { log "Failed to set permissions on /var/run/samba"; exit 1; }
+chmod 755 /var/lib/samba || { log "Failed to set permissions on /var/lib/samba"; exit 1; }
+
 # Start the Samba server in the foreground
 log "Starting Samba server in the foreground..."
 exec /usr/sbin/smbd -FS || { log "Failed to start Samba server"; exit 1; }

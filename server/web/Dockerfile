@@ -5,7 +5,7 @@ ENV DB_HOST = 192.168.1.3 \
     DB_PASS = passwd \
     DB_NAME = wordpress
 
-COPY ./workspace /web
+COPY ./web /web
 
 COPY ./init/installation.sh /usr/local/bin/installation.sh
 

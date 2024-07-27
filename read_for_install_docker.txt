@@ -3,3 +3,12 @@ cd /workspace
 sudo chmod +x install_docker.sh
 
 sudo ./install_docker.sh
+
+
+sudo git pull
+
+or 
+
+sudo git fetch all
+
+git reset --hard origin/main

@@ -9,8 +9,13 @@ dnf install -y python3-pip
 
 pip3 --version
 
-pip3 install docker-compose
+pip3 install --upgrade docker-compose docker
+
+pip3 install --upgrade cryptography
+
+docker-compose --version
 
 systemctl enable docker
 
 systemctl start docker
+

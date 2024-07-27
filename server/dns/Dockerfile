@@ -1,5 +1,5 @@
 # Use the ubuntu/bind9 base image
-FROM rockylinux:latest
+FROM rockylinux:9
 
 # Update and install necessary packages
 RUN dnf -y update && yum -y install \

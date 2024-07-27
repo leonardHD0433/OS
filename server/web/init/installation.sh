@@ -11,33 +11,19 @@ dnf module install php:8.2/common -y
 dnf --enablerepo=epel -y install php-pear php-mbstring php-pdo php-gd php-mysqlnd php-IDNA_Convert php-enchant enchant hunspell
 dnf install openssl -y
 dnf install -y mod_ssl
+dnf install -y php-fpm
+dnf install -y curl
+dnf install -y tar
 dnf clean all
 
-mkdir -p /var/www/wordpress
-rmdir /var/www/html
-cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
-cp /web/conf/www.conf /etc/php-fpm.d/www.conf
-cp -r /web/wordpress /var/www/wordpress
+curl -O "/home/latest.tar.gz" https://wordpress.org/latest.tar.gz
+tar zxvf latest.tar.gz -C /var/www/
 chown -R apache. /var/www/wordpress
-cp /web/cert/server.crt /etc/pki/tls/certs/server.crt
-cp /web/cert/server.crt /etc/ssl/certs/server.crt
-cp /web/cert/server.csr /etc/pki/tls/certs/server.csr
-cp /web/cert/server.csr /etc/ssl/certs/server.csr
-cp /web/cert/server.key /etc/pki/tls/certs/server.key
-cp /web/cert/server.key /etc/ssl/certs/server.key
-rm /etc/httpd/conf.d/ssl.conf
-cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
-cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
-chmod 600 /etc/pki/tls/certs/server.key
-
-# Set ownership to apache user
-chown -R apache:apache /var/www/wordpress
-
-# Set directory permissions
-find /var/www/wordpress -type d -exec chmod 755 {} \;
-
-# Set file permissions
-find /var/www/wordpress -type f -exec chmod 644 {} \;
+#cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
+#cp /web/conf/www.conf /etc/php-fpm.d/www.conf
+#cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
+#rm /etc/httpd/conf.d/ssl.conf
+#cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 
 # Test Apache configuration
 apachectl configtest

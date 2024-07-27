@@ -44,6 +44,6 @@ chmod 755 /var/lib/samba || { log "Failed to set permissions on /var/lib/samba";
 
 # Start the Samba server in the foreground
 log "Starting Samba server in the foreground..."
-exec /usr/sbin/smbd -FS || { log "Failed to start Samba server"; exit 1; }
+exec /usr/sbin/smbd -F || { log "Failed to start Samba server"; exit 1; }
 
 log "Samba setup script completed."

@@ -1,10 +1,9 @@
-FROM rockylinux/rockylinux:9.4
+FROM alpine:latest
 
-RUN dnf install -y \
+RUN apk add --no-cache \
     samba \
     samba-client \
-    samba-common-tools && \
-    dnf clean all
+    samba-common-tools
 
 ENV SMB_USER=samba_admin \
     SMB_PASS=SambalisSpicy \
@@ -14,10 +13,9 @@ ENV SMB_USER=samba_admin \
 
 COPY ./config/smb.conf /etc/samba/smb.conf
 COPY ./init/samba_user.sh /usr/local/bin/samba_user.sh
-COPY ./init/samba_up.sh /usr/local/bin/samba_up.sh
 
-RUN chmod +x /usr/local/bin/samba_user.sh /usr/local/bin/samba_up.sh
+RUN chmod +x /usr/local/bin/samba_user.sh
 
 EXPOSE 137/udp 138/udp 139 445
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/samba_user.sh && /usr/local/bin/samba_up.sh && sleep infinity"]
+ENTRYPOINT ["/bin/sh", "-c", "/usr/local/bin/samba_user.sh && sleep infinity"]

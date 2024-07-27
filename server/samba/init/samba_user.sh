@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Function to log messages
 log() {
@@ -12,7 +12,7 @@ if getent group $SMB_GROUP > /dev/null 2>&1; then
     log "Group $SMB_GROUP already exists."
 else
     log "Adding group: $SMB_GROUP"
-    groupadd $SMB_GROUP || { log "Failed to add group $SMB_GROUP"; exit 1; }
+    addgroup $SMB_GROUP || { log "Failed to add group $SMB_GROUP"; exit 1; }
 fi
 
 # Check if the shared directory exists
@@ -29,9 +29,8 @@ if id -u $SMB_USER > /dev/null 2>&1; then
     log "User $SMB_USER already exists."
 else
     log "Adding user: $SMB_USER"
-    useradd -m $SMB_USER || { log "Failed to add user $SMB_USER"; exit 1; }
+    adduser -D -G $SMB_GROUP $SMB_USER || { log "Failed to add user $SMB_USER"; exit 1; }
     echo -e "$SMB_PASS\n$SMB_PASS" | smbpasswd -a -s $SMB_USER || { log "Failed to set Samba password for $SMB_USER"; exit 1; }
-    usermod -aG $SMB_GROUP $SMB_USER || { log "Failed to add user $SMB_USER to group $SMB_GROUP"; exit 1; }
     chown -R $SMB_USER:$SMB_GROUP $SMB_DIR || { log "Failed to change ownership of $SMB_DIR"; exit 1; }
 fi
 
@@ -39,4 +38,6 @@ fi
 log "Verifying Samba configuration..."
 testparm -s || { log "Samba configuration verification failed"; exit 1; }
 
-# The script ends here, and the CMD in the Dockerfile will take over to run smbd in the foreground
+smbd
+
+log "Samba setup script completed."

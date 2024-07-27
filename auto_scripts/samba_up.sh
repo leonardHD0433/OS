@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Function to log messages
 log() {
@@ -7,7 +7,7 @@ log() {
 
 # Start the smbd service
 log "Starting Samba service with low I/O priority..."
-exec ionice -c 3 smbd -F -S < /dev/null &
+exec ionice -c 3 smbd -F < /dev/null &
 SMBD_PID=$!
 
 # Wait for a few seconds to allow smbd to start

@@ -7,7 +7,7 @@ log() {
 
 # Start the smbd service
 log "Starting Samba service with low I/O priority..."
-exec ionice -c 3 smbd -FS < /dev/null &
+exec ionice -c 3 smbd -F -S < /dev/null &
 SMBD_PID=$!
 
 # Wait for a few seconds to allow smbd to start
@@ -28,8 +28,7 @@ log "Checking Samba service status..."
 if ps -p $SMBD_PID > /dev/null 2>&1; then
     log "Samba service is running."
 else
-    log "Samba service is not running. Checking logs for details..."
-    tail -n 20 /var/log/samba/log.smbd
+    log "Samba service is not running."
     exit 1
 fi
 

@@ -16,7 +16,7 @@ dnf install -y curl
 dnf install -y tar
 dnf clean all
 
-curl -O "/home/latest.tar.gz" https://wordpress.org/latest.tar.gz
+cp ./tar/latest.tar.gz /var/www/latest.tar.gz
 tar zxvf latest.tar.gz -C /var/www/
 chown -R apache. /var/www/wordpress
 #cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf

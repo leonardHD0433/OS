@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Function to log messages
+log() {
+    echo "$(date +"%Y-%m-%d %H:%M:%S") - $1"
+}
+
 # Start the smbd service
 log "Starting Samba service..."
 smbd --foreground --no-process-group &

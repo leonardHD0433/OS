@@ -12,17 +12,16 @@ dnf --enablerepo=epel -y install php-pear php-mbstring php-pdo php-gd php-mysqln
 dnf install openssl -y
 dnf install -y mod_ssl
 dnf install -y php-fpm
-dnf install -y curl
 dnf install -y tar
 dnf clean all
 
 cp ./tar/latest.tar.gz /var/www/latest.tar.gz
-tar zxvf latest.tar.gz -C /var/www/
+tar zxvf /var/www/latest.tar.gz -C /var/www/
 chown -R apache. /var/www/wordpress
-#cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
-#cp /web/conf/www.conf /etc/php-fpm.d/www.conf
-#cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
-#rm /etc/httpd/conf.d/ssl.conf
+cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
+cp /web/conf/www.conf /etc/php-fpm.d/www.conf
+cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
+rm /etc/httpd/conf.d/ssl.conf
 #cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 
 # Test Apache configuration

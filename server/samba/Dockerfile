@@ -19,5 +19,3 @@ RUN chmod +x /usr/local/bin/samba_user.sh
 EXPOSE 137/udp 138/udp 139 445
 
 ENTRYPOINT ["/usr/local/bin/samba_user.sh"]
-
-CMD ["smbd", "--foreground", "--log-stdout", "--no-process-group"]

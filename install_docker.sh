@@ -10,6 +10,8 @@ curl -L "https://github.com/docker/compose/releases/download/v2.12.2/docker-comp
 
 chmod +x /usr/bin/docker-compose
 
+chown admin:docker /var/run/docker.sock
+
 docker --version
 
 docker-compose --version

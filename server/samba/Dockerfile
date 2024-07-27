@@ -1,4 +1,9 @@
-FROM dperson/samba
+FROM alpine:3.12.0
+
+RUN apk add --no-cache --update \
+    samba-common-tools \
+    samba-client \
+    samba-server
 
 ENV SMB_USER=samba_admin \
     SMB_PASS=SambalisSpicy \

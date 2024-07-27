@@ -30,5 +30,14 @@ cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
 chmod 600 /etc/pki/tls/certs/server.key
 
+# Set ownership to apache user
+chown -R apache:apache /var/www/wordpress
+
+# Set directory permissions
+find /var/www/wordpress -type d -exec chmod 755 {} \;
+
+# Set file permissions
+find /var/www/wordpress -type f -exec chmod 644 {} \;
+
 # Test Apache configuration
 apachectl configtest

@@ -30,7 +30,7 @@ if id -u $SMB_USER > /dev/null 2>&1; then
 else
     log "Adding user: $SMB_USER"
     adduser -D -G $SMB_GROUP $SMB_USER || { log "Failed to add user $SMB_USER"; exit 1; }
-    echo -e "$SMB_PASS\n$SMB_PASS" | smbpasswd -a -s $SMB_USER || { log "Failed to set Samba password for $SMB_USER"; exit 1; }
+    (echo $SMB_PASS; echo $SMB_PASS) | smbpasswd -a $SMB_USER || { log "Failed to set password for user $SMB_USER"; }
     chown -R $SMB_USER:$SMB_GROUP $SMB_DIR || { log "Failed to change ownership of $SMB_DIR"; exit 1; }
 fi
 

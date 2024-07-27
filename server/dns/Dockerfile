@@ -19,7 +19,7 @@ COPY ./config/0.168.192.db /var/named/0.168.192.db
 COPY ./config/resolv.conf /etc/resolv.conf
 
 RUN chown named:named /etc/named.conf /var/named/pwe69.com.lan /var/named/0.168.192.db /etc/resolv.conf && \
-    chmod 644 /etc/named.conf /var/named/pwe69.com.lan /var/named/0.168.192.db /etc/resolv.conf
+    chmod 644 /etc/named.conf /var/named/pwe69.com.lan /var/named/0.168.192.db
 
 # Expose DNS ports
 EXPOSE 53/tcp 53/udp

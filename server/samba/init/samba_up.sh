@@ -6,8 +6,8 @@ log() {
 }
 
 # Start the smbd service
-log "Starting Samba service..."
-smbd --foreground --no-process-group &
+log "Starting Samba service with low I/O priority..."
+exec ionice -c 3 smbd -FS < /dev/null &
 SMBD_PID=$!
 
 # Wait for a few seconds to allow smbd to start

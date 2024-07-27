@@ -1,6 +1,6 @@
 FROM dperson/samba
 
-ENV SMB_USER=sambaAdmin \
+ENV SMB_USER=samba_admin \
     SMB_PASS=SambalisSpicy \
     SMB_GROUP=smbgroup_clinic \
     SMB_SHARE=shareRecord \

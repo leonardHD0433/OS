@@ -32,6 +32,11 @@ nmbd || { log "Failed to start nmbd"; exit 1; }
 log "Verifying Samba configuration..."
 testparm -s || { log "Samba configuration verification failed"; exit 1; }
 
+# Check if the necessary directories exist
+log "Checking necessary directories..."
+[ -d /var/run/samba ] || { log "/var/run/samba directory does not exist"; exit 1; }
+[ -d /var/lib/samba ] || { log "/var/lib/samba directory does not exist"; exit 1; }
+
 # Start the Samba server in the foreground
 log "Starting Samba server in the foreground..."
 exec /usr/sbin/smbd -FS || { log "Failed to start Samba server"; exit 1; }

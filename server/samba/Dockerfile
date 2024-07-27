@@ -1,9 +1,9 @@
-FROM alpine:latest
+FROM rockylinux/rockylinux:9.4
 
-RUN apk add --no-cache --update \
-    samba-common-tools \
+RUN dnf install -y \
+    samba \
     samba-client \
-    samba-server
+    samba-common-tools
 
 ENV SMB_USER=samba_admin \
     SMB_PASS=SambalisSpicy \

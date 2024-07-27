@@ -20,4 +20,4 @@ RUN chmod +x /usr/local/bin/samba_user.sh /usr/local/bin/samba_up.sh
 
 EXPOSE 137/udp 138/udp 139 445
 
-ENTRYPOINT ["/usr/local/bin/samba_up.sh"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/local/bin/samba_user.sh && /usr/local/bin/samba_up.sh"]

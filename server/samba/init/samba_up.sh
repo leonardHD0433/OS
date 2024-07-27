@@ -22,14 +22,13 @@ log "Setting permissions for Samba directories..."
 chmod 755 /var/run/samba || { log "Failed to set permissions on /var/run/samba"; exit 1; }
 chmod 755 /var/lib/samba || { log "Failed to set permissions on /var/lib/samba"; exit 1; }
 
-
-
 # Check if smbd is running
 log "Checking Samba service status..."
-if pgrep smbd > /dev/null 2>&1; then
+if ps -p $SMBD_PID > /dev/null 2>&1; then
     log "Samba service is running."
 else
-    log "Samba service is not running."
+    log "Samba service is not running. Checking logs for details..."
+    tail -n 20 /var/log/samba/log.smbd
     exit 1
 fi
 

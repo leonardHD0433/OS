@@ -8,6 +8,7 @@ log() {
 # Start the smbd service
 log "Starting Samba service..."
 smbd --foreground --no-process-group &
+SMBD_PID=$!
 
 # Wait for a few seconds to allow smbd to start
 sleep 5

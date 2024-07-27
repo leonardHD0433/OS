@@ -6,6 +6,7 @@ groupadd $SMB_GROUP
 # Create the shared directory and set permissions
 mkdir -p $SMB_DIR
 chmod 770 $SMB_DIR
+chown -R $SMB_USER:$SMB_GROUP $SMB_DIR
 
 # Add a new user and assign it to the group
 useradd -m $SMB_USER

@@ -10,6 +10,7 @@ dnf module enable php:8.2 -y
 dnf module install php:8.2/common -y
 dnf --enablerepo=epel -y install php-pear php-mbstring php-pdo php-gd php-mysqlnd php-IDNA_Convert php-enchant enchant hunspell
 dnf install openssl -y
+dnf install -y mod_ssl
 dnf clean all
 
 mkdir -p /var/www/wordpress
@@ -31,5 +32,5 @@ chmod 600 /etc/pki/tls/certs/server.key
 # Test Apache configuration
 apachectl configtest
 
-service php-fpm start
-service httpd start
+systemctl php-fpm restart
+systemctl httpd restart

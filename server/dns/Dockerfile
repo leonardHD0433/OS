@@ -2,7 +2,7 @@
 FROM rockylinux:9
 
 # Update and install necessary packages
-RUN dnf -y update && yum -y install \
+RUN dnf -y update && dnf -y install \
     bind \
     bind-utils \
     && dnf clean all

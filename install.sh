@@ -18,6 +18,7 @@ docker-compose --version
 
 #make samba dir on host for volume mount
 mkdir -p /mnt/shareRecord
+chown admin:admin /mnt/shareRecord
 
 
 

@@ -22,5 +22,7 @@ service nmb restart
 # Verify Samba configuration
 testparm -s
 
+echo smbpasswd -a $SMB_USER
+
 # Start the Samba server
 exec /usr/bin/samba.sh

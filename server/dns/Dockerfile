@@ -18,7 +18,7 @@ COPY ./config/pwe69.com.lan /var/named/pwe69.com.lan
 COPY ./config/0.168.192.db /var/named/0.168.192.db
 COPY ./config/resolv.conf /etc/resolv.conf
 
-RUN chown named:named /etc/named.conf /var/named/pwe69.com.lan /var/named/0.168.192.db /etc/resolv.conf && \
+RUN chown named:named /etc/named.conf /var/named/pwe69.com.lan /var/named/0.168.192.db && \
     chmod 644 /etc/named.conf /var/named/pwe69.com.lan /var/named/0.168.192.db
 
 # Expose DNS ports

@@ -3,7 +3,8 @@ FROM rockylinux/rockylinux:9.4
 RUN dnf install -y \
     samba \
     samba-client \
-    samba-common-tools
+    samba-common-tools && \
+    dnf clean all
 
 ENV SMB_USER=samba_admin \
     SMB_PASS=SambalisSpicy \
@@ -19,3 +20,5 @@ RUN chmod +x /usr/local/bin/samba_user.sh
 EXPOSE 137/udp 138/udp 139 445
 
 ENTRYPOINT ["/usr/local/bin/samba_user.sh"]
+
+CMD ["smbd", "--foreground", "--log-stdout", "--no-process-group"]

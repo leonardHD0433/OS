@@ -1,9 +1,9 @@
 FROM rockylinux:9
 
-ENV DB_HOST = 192.168.1.3 \
-    DB_USER = admin \
-    DB_PASS = passwd \
-    DB_NAME = wordpress
+ENV DB_HOST=192.168.1.3 \
+    DB_USER=admin \
+    DB_PASS=passwd \
+    DB_NAME=wordpress
 
 COPY ./web /web
 

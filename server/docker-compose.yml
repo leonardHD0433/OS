@@ -46,7 +46,7 @@ services:
             - "80:80"
             - "443:443"
         volumes:
-            - /var/www/html:/var/www/html
+            - /var/www/html:/var/www/wordpress
         networks:
             OS:
                 ipv4_address: 192.168.1.4

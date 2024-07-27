@@ -23,11 +23,6 @@ echo -e "$SMB_PASS\n$SMB_PASS" | smbpasswd -a -s $SMB_USER || { log "Failed to s
 usermod -aG $SMB_GROUP $SMB_USER || { log "Failed to add user $SMB_USER to group $SMB_GROUP"; exit 1; }
 chown -R $SMB_USER:$SMB_GROUP $SMB_DIR || { log "Failed to change ownership of $SMB_DIR"; exit 1; }
 
-# Start the Samba services
-log "Starting Samba services..."
-smbd || { log "Failed to start smbd"; exit 1; }
-nmbd || { log "Failed to start nmbd"; exit 1; }
-
 # Verify Samba configuration
 log "Verifying Samba configuration..."
 testparm -s || { log "Samba configuration verification failed"; exit 1; }
@@ -44,5 +39,4 @@ chmod 755 /var/lib/samba || { log "Failed to set permissions on /var/lib/samba";
 
 log "Samba setup script completed."
 
-# Replace the shell with the smbd process
-exec "$@"
+# The script ends here, and the CMD in the Dockerfile will take over to run smbd in the foreground

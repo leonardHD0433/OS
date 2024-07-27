@@ -25,6 +25,7 @@ cp /web/cert/server.csr /etc/pki/tls/certs/server.csr
 cp /web/cert/server.csr /etc/ssl/certs/server.csr
 cp /web/cert/server.key /etc/pki/tls/certs/server.key
 cp /web/cert/server.key /etc/ssl/certs/server.key
+rm /etc/httpd/conf.d/ssl.conf
 cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
 chmod 600 /etc/pki/tls/certs/server.key
@@ -32,5 +33,5 @@ chmod 600 /etc/pki/tls/certs/server.key
 # Test Apache configuration
 apachectl configtest
 
-systemctl php-fpm restart
-systemctl httpd restart
+systemctl restart php-fpm 
+systemctl restart httpd 

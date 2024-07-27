@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Define paths
+CERT_DIR="/etc/pki/tls/certs"
+KEY_FILE="$CERT_DIR/server.key"
+CSR_FILE="$CERT_DIR/server.csr"
+CRT_FILE="$CERT_DIR/server.crt"
+
 dnf install -y httpd php-mysqlnd
 dnf install -y epel-release
 systemctl enable httpd
@@ -22,13 +28,21 @@ cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
 cp /web/conf/www.conf /etc/php-fpm.d/www.conf
 cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
 rm /etc/httpd/conf.d/ssl.conf
-# Generate SSL certificate and key
-cd /etc/pki/tls/certs
-openssl genrsa -aes128 -passout pass:passwd -out server.key 2048
-openssl rsa -in server.key -passin pass:passwd -out server.key
-openssl req -utf8 -new -key server.key -out server.csr -subj "/C=MY/ST=Selangor/L=Shah Alam/O=UOW Malaysia/OU=Operating Systems/CN=pwe69.com/emailAddress=root@pwe69.com"
-openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 3650
-sudo chmod 600 server.key
+
+# Generate RSA Key
+openssl genrsa -aes128 -passout pass:passwd -out $KEY_FILE 2048
+
+# Remove passphrase from key
+openssl rsa -in $KEY_FILE -passin pass:passwd -out $KEY_FILE
+
+# Generate CSR
+openssl req -utf8 -new -key $KEY_FILE -out $CSR_FILE -subj "/C=MY/ST=Selangor/L=Shah Alam/O=UOW Malaysia/OU=Operating Systems/CN=pwe69.com/emailAddress=root@pwe69.com"
+
+# Generate Self-Signed Certificate
+openssl x509 -in $CSR_FILE -out $CRT_FILE -req -signkey $KEY_FILE -days 3650
+
+# Set permissions
+sudo chmod 600 $KEY_FILE
 
 #cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 

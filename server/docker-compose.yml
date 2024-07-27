@@ -12,8 +12,22 @@ services:
         networks:
             - OS
 
+    samba:
+        build: ./samba
+        container_name: samba
+        ports:
+            - "137:137/udp"
+            - "138:138/udp"
+            - "139:139"
+            - "445:445"
+        volumes:
+            - samba:/home/shareRecord
+        networks:
+            - OS
+
 volumes:
     db:
+    samba:
 
 networks:
     OS:

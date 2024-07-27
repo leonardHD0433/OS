@@ -15,7 +15,7 @@ dnf install -y php-fpm
 dnf install -y tar
 dnf clean all
 
-cp ./web/tar/latest.tar.gz /var/www/latest.tar.gz
+cp /web/tar/latest.tar.gz /var/www/latest.tar.gz
 tar zxvf /var/www/latest.tar.gz -C /var/www/
 chown -R apache. /var/www/wordpress
 cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf

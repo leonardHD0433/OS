@@ -36,7 +36,7 @@ services:
         restart: always
         networks:
             OS:
-                ipv4_address: 192.168.1.8
+                ipv4_address: 192.168.0.80
 
 volumes:
     db:
@@ -46,6 +46,6 @@ networks:
         driver: bridge
         ipam:
             config:
-                - subnet: 192.168.1.0/24
+                - subnet: 192.168.0.0/24
 
     

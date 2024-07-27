@@ -11,5 +11,5 @@ $TTL 86400
 	IN A		192.168.0.8
 	IN MX 10	pwe69.pwe69.com.
 
-www IN A	192.168.1.4
-pwe69 IN A	192.168.1.4
+www IN A	192.168.0.40
+pwe69 IN A	192.168.0.40

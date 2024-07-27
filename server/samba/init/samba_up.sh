@@ -34,6 +34,3 @@ else
 fi
 
 log "Samba setup script completed."
-
-# Keep the container running
-tail -f /dev/null

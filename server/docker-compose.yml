@@ -22,13 +22,13 @@ services:
             - "139:139"
             - "445:445"
         volumes:
-            - samba:/home/shareRecord
+            - /mnt/shareRecord:/mnt/shareRecord
+        restart: always
         networks:
             - OS
 
 volumes:
     db:
-    samba:
 
 networks:
     OS:

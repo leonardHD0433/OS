@@ -1,4 +1,4 @@
-#i will execute commands to run this script
+#install docker
 
 dnf config-manager --add-repo=https://download.docker.com/linux/rhel/docker-ce.repo
 
@@ -15,6 +15,9 @@ chown admin:docker /var/run/docker.sock
 docker --version
 
 docker-compose --version
+
+#make samba dir on host for volume mount
+mkdir -p /mnt/shareRecord
 
 
 

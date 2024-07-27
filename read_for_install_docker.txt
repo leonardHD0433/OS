@@ -1,8 +1,8 @@
 cd /workspace
 
-sudo chmod +x install_docker.sh
+sudo chmod +x intall.sh
 
-sudo ./install_docker.sh
+sudo ./install.sh
 
 
 sudo git pull

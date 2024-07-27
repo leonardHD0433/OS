@@ -1,6 +1,7 @@
 #!/bin/bash
 
 dnf install -y httpd php-mysqlnd
+dnf install -y epel-release
 systemctl enable httpd
 rm /etc/httpd/conf.d/welcome.conf 
 
@@ -15,7 +16,7 @@ mkdir -p /var/www/wordpress
 rmdir /var/www/html
 cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
 cp /web/conf/www.conf /etc/php-fpm.d/www.conf
-cp /web/wordpress /var/www/wordpress
+cp -r /web/wordpress /var/www/wordpress
 chown -R apache. /var/www/wordpress
 cp /web/cert/server.crt /etc/pki/tls/certs/server.crt
 cp /web/cert/server.crt /etc/ssl/certs/server.crt

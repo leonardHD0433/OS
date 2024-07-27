@@ -33,5 +33,7 @@ chmod 600 /etc/pki/tls/certs/server.key
 # Test Apache configuration
 apachectl configtest
 
+mkdir -p /run/php-fpm
+
 php-fpm
 httpd -D FOREGROUND

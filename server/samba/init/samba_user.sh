@@ -51,4 +51,13 @@ chmod 755 /var/lib/samba || { log "Failed to set permissions on /var/lib/samba";
 
 log "Samba setup script completed."
 
+# Check if smbd is running
+log "Checking Samba service status..."
+if pgrep smbd > /dev/null 2>&1; then
+    log "Samba service is running."
+else
+    log "Samba service is not running."
+    exit 1
+fi
+
 # The script ends here, and the CMD in the Dockerfile will take over to run smbd in the foreground

@@ -9,6 +9,8 @@ COPY ./web /web
 
 COPY ./init/installation.sh /usr/local/bin/installation.sh
 
+EXPOSE 80 443
+
 RUN chmod +x /usr/local/bin/installation.sh
 
 RUN /usr/local/bin/installation.sh

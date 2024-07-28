@@ -22,8 +22,6 @@ dnf install -y tar
 dnf clean all
 
 cp /web/tar/wordpress-6.6.1.tar.gz /var/www/wordpress-6.6.1.tar.gz
-tar zxvf /var/www/wordpress-6.6.1.tar.gz -C /var/www/
-chown -R apache. /var/www/wordpress
 cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
 cp /web/conf/www.conf /etc/php-fpm.d/www.conf
 cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf

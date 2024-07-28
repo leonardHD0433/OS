@@ -33,13 +33,8 @@ cp /web/cert/server.key $KEY_FILE
 cp /web/cert/server.csr $CSR_FILE
 cp /web/cert/server.crt $CRT_FILE
 
-# Set permissions
-chmod 600 $KEY_FILE
-
 cp $KEY_FILE /etc/ssl/certs/server.key
 cp $CRT_FILE /etc/ssl/certs/server.crt
-
-chmod 600 /etc/ssl/certs/server.key
 
 cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 

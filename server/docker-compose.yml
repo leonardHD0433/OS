@@ -76,7 +76,7 @@ services:
             - /var/mail:/var/mail
         networks:
             OS:
-                ipv4_address: 192.168.
+                ipv4_address: 192.168.1.5
 
 volumes:
     db:

@@ -78,6 +78,8 @@ services:
             - "pwe69.pwe69.com:192.168.1.5"
         dns:
             - 192.168.1.8
+        depends_on:
+            - dns
         networks:
             OS:
                 ipv4_address: 192.168.1.5

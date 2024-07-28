@@ -13,6 +13,12 @@ if [ ! -f /var/www/wordpress/info.php ]; then
     chmod 644 /var/www/wordpress/info.php
 fi
 
+if [ ! -f /var/www/wordpress/wp-login.php ]; then
+    cp /web/conf/wp-login.php /var/www/wordpress/wp-login.php
+    chown apache:apache /var/www/wordpress/wp-login.php
+    chmod 644 /var/www/wordpress/wp-login.php
+fi
+
 # Start httpd in the background
 httpd -D FOREGROUND &
 

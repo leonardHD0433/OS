@@ -6,6 +6,7 @@ FROM ubuntu/bind9:latest
 COPY ./config/named.conf /etc/bind/named.conf
 COPY ./config/pwe69.com.lan /var/cache/bind/pwe69.com.lan
 COPY ./config/0.168.192.db /var/cache/bind/0.168.192.db
+COPY ./config/1.168.192.db /var/cache/bind/1.168.192.db
 COPY ./config/resolv.conf /etc/resolv.conf
 
 # Expose DNS ports

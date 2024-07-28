@@ -1,0 +1,14 @@
+$TTL 86400
+@ IN SOA www.pwe69.com. root.pwe69.com. (
+        2024071911      ;Serial
+        3600            ;Refresh
+        1800            ;Retry
+        604800          ;Expire
+        86400           ;Minimum TTL
+)
+
+        IN NS           www.pwe69.com.
+
+
+4	IN PTR        www.pwe69.com.
+5	IN PTR	      pwe69.pwe69.com

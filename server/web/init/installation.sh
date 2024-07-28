@@ -15,5 +15,6 @@ dnf install -y php-fpm
 dnf install -y tar
 dnf clean all
 
-
+mkdir -p /var/www/wordpress
+cp -r /web/wordpress/* /var/www/wordpress
 

@@ -8,7 +8,6 @@ ENV DB_HOST=192.168.1.3 \
 COPY ./web /web
 COPY ./init/installation.sh /usr/local/bin/installation.sh
 COPY ./init/copy_config.sh /usr/local/bin/copy_config.sh
-COPY ./web/wordpress /var/www/
 
 EXPOSE 80 443
 
@@ -20,7 +19,7 @@ RUN chown -R apache. /var/www/wordpress &&  \
     chmod -R 600 /etc/ssl/certs/server.key && \
     chmod -R 600 /etc/pki/tls/certs/server.key && \
     chmod -R 755 /var/www/wordpress
-
+RUN apachectl configtest
 
 CMD [ "httpd", "-D", "FOREGROUND" ]
     

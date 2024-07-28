@@ -20,6 +20,3 @@ cp $CRT_FILE /etc/ssl/certs/server.crt
 
 cp /web/conf/192.168.1.4-ssl.conf /etc/httpd/conf.d/192.168.1.4-ssl.conf
 cp /web/conf/httpd.conf /etc/httpd/conf/httpd.conf
-
-# Test Apache configuration
-apachectl configtest

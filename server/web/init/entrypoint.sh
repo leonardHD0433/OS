@@ -13,8 +13,8 @@ if [ ! -f /var/www/wordpress/info.php ]; then
     chmod 644 /var/www/wordpress/info.php
 fi
 
-if [ ! -f /var/www/wordpress/wp-login.php ]; then
-    cp /web/conf/wp-login.php /var/www/wordpress/wp-login.php
+if [ ! -f /var/www/wordpress/wp-config.php ]; then
+    cp -v /web/conf/wp-config.php /var/www/wordpress/
     chown apache:apache /var/www/wordpress/wp-login.php
     chmod 644 /var/www/wordpress/wp-login.php
 fi

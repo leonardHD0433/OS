@@ -22,5 +22,7 @@ RUN chown -R apache. /var/www/wordpress &&  \
     chmod -R 600 /etc/pki/tls/certs/server.key && \
     chmod -R 755 /var/www/wordpress
 
+COPY ./web/conf/index.php /var/www/html/index.php
+
 CMD [ "httpd", "-D", "FOREGROUND" ]
     

@@ -4,7 +4,9 @@ RUN dnf install -y postfix && \
     dnf install -y dovecot && \
     dnf clean all
 
-COPY ./cert/mail.crt ./cert/mail.key ./cert/mail.pem /etc/pki/tls/certs/
+COPY ./cert/mail.crt /etc/pki/tls/certs/
+COPY ./cert/mail.key /etc/pki/tls/certs/
+COPY ./cert/mail.pem /etc/pki/tls/certs/
 
 # Add the user with specific UID and shell
 RUN useradd --uid 20000 --shell /sbin/nologin vmail
@@ -20,7 +22,7 @@ COPY ./conf/10-master.conf /etc/dovecot/conf.d/10-master.conf
 COPY ./conf/10-ssl.conf /etc/dovecot/conf.d/10-ssl.conf
 COPY ./conf/virtual-mailbox /etc/postfix/virtual-mailbox
 RUN postmap /etc/postfix/virtual-mailbox
-COPY ./users /etc/dovecot/users
+COPY ./conf/users /etc/dovecot/users
 
 EXPOSE 25 110 143 465 587 993 995
 

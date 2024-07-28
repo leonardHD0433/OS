@@ -15,5 +15,5 @@ dnf install -y php-fpm
 dnf install -y tar
 dnf clean all
 
-cp /web/tar/wordpress-6.6.1.tar.gz /var/www/wordpress-6.6.1.tar.gz
+
 

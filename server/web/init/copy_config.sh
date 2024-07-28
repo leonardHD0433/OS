@@ -6,6 +6,8 @@ KEY_FILE="$CERT_DIR/server.key"
 CSR_FILE="$CERT_DIR/server.csr"
 CRT_FILE="$CERT_DIR/server.crt"
 
+cp /web/wordpress /var/www/wordpress -r
+cp /web/conf/index.php /var/www/wordpress/index.php
 cp /web/conf/www.conf /etc/php-fpm.d/www.conf
 cp /web/conf/wordpress.conf /etc/httpd/conf.d/wordpress.conf
 rm /etc/httpd/conf.d/ssl.conf

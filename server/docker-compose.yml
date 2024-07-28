@@ -61,6 +61,23 @@ services:
             - db
             - dns
 
+    mail:
+        build: ./mail
+        container_name: mail
+        ports:
+            - "25:25"
+            - "110:110"
+            - "143:143"
+            - "465:465"
+            - "587:587"
+            - "993:993"
+            - "995:995"
+        volumes:
+            - /var/mail:/var/mail
+        networks:
+            OS:
+                ipv4_address: 192.168.
+
 volumes:
     db:
 

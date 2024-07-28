@@ -6,7 +6,7 @@ RUN dnf install -y postfix && \
 
 COPY ./cert/mail.crt /etc/pki/tls/certs/
 COPY ./cert/mail.key /etc/pki/tls/certs/
-COPY ./cert/mail.pem /etc/pki/tls/certs/
+COPY ./cert/mail.csr /etc/pki/tls/certs/
 
 # Add the user with specific UID and shell
 RUN useradd --uid 20000 --shell /sbin/nologin vmail
